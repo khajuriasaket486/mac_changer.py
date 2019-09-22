@@ -1,7 +1,7 @@
 from subprocess import call
 from optparse import OptionParser
 
-def get_options():
+def get_options():  # Parse arguements and options agaist it on terminal.
     parser=OptionParser()
     parser.add_option('-i','--interface', dest='interface', help="Enter interface name to change its mac-address")
     parser.add_option('-m','--mac',dest='new_mac', help="Enter new mac-address")
@@ -13,7 +13,7 @@ def get_options():
         parser.error("[-]No valid mac-address")
     return options
 
-def change_mac(interface, new_mac):
+def change_mac(interface, new_mac): # Changes the mac-address.
     print("[+]Changing mac_address for ", interface , "to new mac_address: ", new_mac)
     call(["ifconfig", interface, "down"])
     call(["ifconfig", interface, "hw ether", new_mac])
